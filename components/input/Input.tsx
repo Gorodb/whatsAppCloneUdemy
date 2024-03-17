@@ -8,9 +8,10 @@ interface InputProps extends TextInputProps {
 	iconPack: any;
 	iconName?: string;
 	iconSize?: number;
+	errorMessage?: string;
 }
 
-export function Input({label, iconName, iconSize, iconPack: Icon, ...restProps}: InputProps) {
+export function Input({label, iconName, iconSize, errorMessage, iconPack: Icon, ...restProps}: InputProps) {
 	return (
 		<View style={styles.container}>
 			{label && <Text style={styles.label}>{label}</Text>}
@@ -18,13 +19,15 @@ export function Input({label, iconName, iconSize, iconPack: Icon, ...restProps}:
 				{Icon && <Icon name={iconName} style={styles.icon} size={iconSize || 15} />}
 				<TextInput {...restProps} style={styles.input} />
 			</View>
+			{errorMessage && <View style={styles.errorContainer}>
+				<Text style={styles.errorText}>{errorMessage}</Text>
+			</View>}
 		</View>
 	)
 }
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
 	},
 	inputContainer: {
 		flexDirection: "row",
@@ -52,5 +55,14 @@ const styles = StyleSheet.create({
 		fontFamily: FontsEnum.REGULAR,
 		letterSpacing: 0.4,
 		paddingTop: 0,
+	},
+	errorContainer: {
+		marginVertical: 5,
+	},
+	errorText: {
+		color: colors.errorText,
+		fontSize: 13,
+		fontFamily: FontsEnum.REGULAR,
+		letterSpacing: 0.3,
 	}
 });
