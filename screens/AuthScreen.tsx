@@ -17,9 +17,21 @@ import {SignInForm} from "../components/signInForm/SignInForm";
 
 import logo from "../assets/images/logo.png";
 import {ScrollableView} from "../components/views/ScrollableView";
+import {TextButton} from "../components/buttons/TextButton";
+
+export enum InputIdsEum {
+	FIRST_NAME = "firstName",
+	LAST_NAME = "lastName",
+	EMAIL = "email",
+	PASSWORD = "password"
+}
 
 export const AuthScreen = () => {
 	const [isSignUp, setIsSignUp] = useState(false);
+
+	const onSwitchPressedHandler = () => {
+		setIsSignUp(prevValue => !prevValue)
+	}
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -29,11 +41,11 @@ export const AuthScreen = () => {
 						<Image source={logo} style={styles.image}/>
 					</View>
 					{!isSignUp ? <SignUpForm/> : <SignInForm/>}
-					<TouchableOpacity style={{marginTop: 40}} onPress={() => {
-						setIsSignUp(prevValue => !prevValue)
-					}}>
-						<Text>{`Switch to ${!isSignUp ? "sign in" : "signUp"}`}</Text>
-					</TouchableOpacity>
+					<TextButton
+						onPress={onSwitchPressedHandler}
+						text={`Switch to ${!isSignUp ? "sign in" : "signUp"}`}
+						customStyles={{marginTop: 20}}
+					/>
 				</ScrollableView>
 			</PageContainer>
 		</SafeAreaView>
@@ -56,4 +68,4 @@ const styles = StyleSheet.create({
 		width: '50%',
 		resizeMode: 'contain',
 	}
-})
+});

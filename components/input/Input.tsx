@@ -5,19 +5,25 @@ import {FontsEnum} from "../../enums/fonts";
 
 interface InputProps extends TextInputProps {
 	label?: string;
+	id: string;
 	iconPack: any;
 	iconName?: string;
 	iconSize?: number;
 	errorMessage?: string;
+	onInputChanged: (id: string, value: string) => void;
 }
 
-export function Input({label, iconName, iconSize, errorMessage, iconPack: Icon, ...restProps}: InputProps) {
+export function Input({label, id, iconName, iconSize, errorMessage, onInputChanged, iconPack: Icon, ...restProps}: InputProps) {
+	const onInputChange = (text: string) => {
+		onInputChanged(id, text);
+	}
+
 	return (
 		<View style={styles.container}>
 			{label && <Text style={styles.label}>{label}</Text>}
 			<View style={styles.inputContainer}>
 				{Icon && <Icon name={iconName} style={styles.icon} size={iconSize || 15} />}
-				<TextInput {...restProps} style={styles.input} />
+				<TextInput onChangeText={onInputChange} {...restProps} style={styles.input} />
 			</View>
 			{errorMessage && <View style={styles.errorContainer}>
 				<Text style={styles.errorText}>{errorMessage}</Text>

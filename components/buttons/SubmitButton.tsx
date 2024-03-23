@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 		backgroundColor: colors.primaryDisabled,
 	},
 	disabledText: {
-		color: colors.sendWhite,
+		color: colors.primaryDisabledText,
 	},
 	enabledText: {
 		color: colors.sendWhite,

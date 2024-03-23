@@ -3,6 +3,7 @@ export const colors = {
 	primaryDisabled: '#71c2a1',
 	primaryBlue: '#3498db',
 	lightGray: '#bdc3c7',
+	primaryDisabledText: '#ececec',
 	sendWhite: '#fff',
 	bgWhite: '#fff',
 	inputBg: '#f4f8f7',
